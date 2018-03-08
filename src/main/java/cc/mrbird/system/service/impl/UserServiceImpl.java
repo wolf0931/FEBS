@@ -58,6 +58,7 @@ public class UserServiceImpl extends BaseService<User> implements UserService {
 		user.setCrateTime(new Date());
 		user.setTheme(User.DEFAULT_THEME);
 		user.setAvatar(User.DEFAULT_AVATAR);
+		user.setSsex(User.SEX_UNKNOW);
 		user.setPassword(MD5Utils.encrypt(user.getUsername(), user.getPassword()));
 		this.save(user);
 		UserRole ur = new UserRole();
