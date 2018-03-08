@@ -2,7 +2,7 @@ package cc.mrbird.system.dao;
 
 import java.util.List;
 
-import cc.mrbird.common.dao.MyMapper;
+import cc.mrbird.common.config.MyMapper;
 import cc.mrbird.system.domain.User;
 import cc.mrbird.system.domain.UserWithRole;
 
