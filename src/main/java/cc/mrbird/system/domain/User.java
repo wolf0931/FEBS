@@ -26,6 +26,8 @@ public class User implements Serializable {
 	 * User表序列
 	 */
 	public static final String SEQ = "seq_user";
+	
+	public static final String SEX_UNKNOW = "2";
 
 	public static final String DEFAULT_THEME = "green";
 	
