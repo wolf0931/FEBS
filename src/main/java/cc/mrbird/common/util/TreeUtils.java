@@ -8,23 +8,18 @@ import java.util.Map;
 import cc.mrbird.common.domain.Tree;
 
 public class TreeUtils {
-
+	
 	public static <T> Tree<T> build(List<Tree<T>> nodes) {
-
 		if (nodes == null) {
 			return null;
 		}
 		List<Tree<T>> topNodes = new ArrayList<Tree<T>>();
-
 		for (Tree<T> children : nodes) {
-
 			String pid = children.getParentId();
 			if (pid == null || "0".equals(pid)) {
 				topNodes.add(children);
-
 				continue;
 			}
-
 			for (Tree<T> parent : nodes) {
 				String id = parent.getId();
 				if (id != null && id.equals(pid)) {
@@ -48,7 +43,6 @@ public class TreeUtils {
 		Map<String, Object> state = new HashMap<>(16);
 		state.put("opened", true);
 		root.setState(state);
-
 		return root;
 	}
 
@@ -57,29 +51,22 @@ public class TreeUtils {
 			return null;
 		}
 		List<Tree<T>> topNodes = new ArrayList<Tree<T>>();
-
 		for (Tree<T> children : nodes) {
-
 			String pid = children.getParentId();
 			if (pid == null || idParam.equals(pid)) {
 				topNodes.add(children);
-
 				continue;
 			}
-
 			for (Tree<T> parent : nodes) {
 				String id = parent.getId();
 				if (id != null && id.equals(pid)) {
 					parent.getChildren().add(children);
 					children.setHasParent(true);
 					parent.setChildren(true);
-
 					continue;
 				}
 			}
-
 		}
 		return topNodes;
 	}
-
 }
