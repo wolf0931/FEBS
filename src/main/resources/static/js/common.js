@@ -1,27 +1,39 @@
 var $MB = (function() {
-    // http://bootstrap-table.wenzhixin.net.cn/zh-cn/documentation/
-    function _initTable(id, setting) {
-        $('#' + id).bootstrapTable({
-            method: 'get', // 服务器数据的请求方式 get or post
-            url: setting.url, // 服务器数据的加载地址
-            striped: true, //是否显示行间隔色
-            cache: false, //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
-            pagination: true, //是否显示分页（*）
-            sortable: false, //是否启用排序
-            sidePagination: "server", //分页方式：client客户端分页，server服务端分页（*）
-            pageNumber: !setting.pageNumber ? 1 : setting.pageNumber, //初始化加载第一页，默认第一页
-            pageSize: !setting.pageSize ? 10 : setting.pageSize, //每页的记录行数（*）
-            pageList: !setting.pageList ? [10, 25, 50, 100] : setting.pageList, //可供选择的每页的行数（*）
+    var bootstrapTable_default = {
+            method: 'get',
+            striped: true,
+            cache: false,
+            pagination: true,
+            sortable: false,
+            sidePagination: "server",
+            pageNumber: 1,
+            pageSize: 10,
+            pageList: [5, 10, 25, 50, 100],
             strictSearch: true,
-            minimumCountColumns: 2, //最少允许的列数
-            clickToSelect: true, //是否启用点击选中行
-            uniqueId: "ID", //每一行的唯一标识，一般为主键列
+            showColumns: false,
+            minimumCountColumns: 2,
+            clickToSelect: true,
+            uniqueId: "ID",
             cardView: false,
-            detailView: false, //是否显示详细视图
+            detailView: false,
             smartDisplay: false,
-            queryParams: !setting.queryParams ? function(params) { return { pageSize: params.limit, pageNum: params.offset / params.limit + 1 }; } : setting.queryParams,
-            columns: setting.columns
-        }), $("body").on("click", "[data-table-action]", function(a) {
+            queryParams: function(params) {
+                return {
+                    pageSize: params.limit,
+                    pageNum: params.offset / params.limit + 1,
+                };
+            }
+        }
+    function _initTable(id, settings) {
+        var params = $.extend({}, bootstrapTable_default, settings);
+        if (typeof params.url == 'undefined') {
+            throw '初始化表格失败，请配置url参数！';
+        }
+        if (typeof params.columns == 'undefined') {
+            throw '初始化表格失败，请配置columns参数！';
+        }
+        $('#' + id).bootstrapTable(params);
+        $("body").on("click", "[data-table-action]", function(a) {
             a.preventDefault();
             var b = $(this).data("table-action");
             if ("excel" === b && $(this).closest(".dataTables_wrapper").find(".buttons-excel").trigger("click"), "csv" === b && $(this).closest(".dataTables_wrapper").find(".buttons-csv").trigger("click"), "print" === b && $(this).closest(".dataTables_wrapper").find(".buttons-print").trigger("click"), "fullscreen" === b) {
@@ -29,9 +41,7 @@ var $MB = (function() {
                 c.hasClass("card--fullscreen") ? (c.removeClass("card--fullscreen"), $("body").removeClass("data-table-toggled")) : (c.addClass("card--fullscreen"), $("body").addClass("data-table-toggled"))
             }
         })
-
     }
-
     // jquery treegird
     function _initTreeTable(id, setting) {
         $('#' + id).bootstrapTreeTable({
