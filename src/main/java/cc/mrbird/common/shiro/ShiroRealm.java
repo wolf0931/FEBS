@@ -28,13 +28,12 @@ import cc.mrbird.system.service.UserService;
 public class ShiroRealm extends AuthorizingRealm {
 
 	@Autowired
-    private UserService userService;
+	private UserService userService;
 	@Autowired
 	private RoleService roleService;
 	@Autowired
 	private MenuService menuService;
-	
-	
+
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principal) {
 		User user = (User) SecurityUtils.getSubject().getPrincipal();
@@ -64,14 +63,14 @@ public class ShiroRealm extends AuthorizingRealm {
 		String password = new String((char[]) token.getCredentials());
 
 		User user = this.userService.findByName(userName);
-		
+
 		if (user == null) {
 			throw new UnknownAccountException("用户名或密码错误！");
 		}
 		if (!password.equals(user.getPassword())) {
 			throw new IncorrectCredentialsException("用户名或密码错误！");
 		}
-		if (user.getStatus().equals("0")) {
+		if ("0".equals(user.getStatus())) {
 			throw new LockedAccountException("账号已被锁定,请联系管理员！");
 		}
 		SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(user, password, getName());
