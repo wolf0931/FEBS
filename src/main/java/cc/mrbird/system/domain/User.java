@@ -63,7 +63,7 @@ public class User implements Serializable {
 	@ExportConfig(value = "状态", convert = "s:0=锁定,1=有效")
 	private String status = STATUS_VALID;
 
-	@Column(name = "CRATE_TIME")
+	@Column(name = "CREATE_TIME")
 	@ExportConfig(value = "创建时间", convert = "c:cc.mrbird.common.util.poi.convert.TimeConvert")
 	private Date crateTime;
 
@@ -188,7 +188,7 @@ public class User implements Serializable {
 	}
 
 	/**
-	 * @return CRATE_TIME
+	 * @return CREATE_TIME
 	 */
 	public Date getCrateTime() {
 		return crateTime;
