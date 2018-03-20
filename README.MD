@@ -10,9 +10,9 @@
 │  ├─菜单管理
 │  ├─角色管理
 │  └─部门管理
-├─任务调度
-│  ├─定时任务
-│  └─调度日志
+├─系统监控
+│  ├─在线用户
+│  └─系统日志
 ├─任务调度
 │  ├─定时任务
 │  └─调度日志
@@ -48,11 +48,11 @@
 
 ### 前端
  
-- 基础框架：Bootstap
+- 基础框架：Bootstrap
 
-- JavaScirpy框架：Jquery
+- JavaScirpy框架：jQuery
 
-- 消息组件：Bootstap notify
+- 消息组件：Bootstrap notify
 
 - 提示框插件：SweetAlert2
 
