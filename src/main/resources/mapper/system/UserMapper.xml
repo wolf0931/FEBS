@@ -23,7 +23,7 @@
   
   <select id="findUserWithDept" resultType="user" parameterType="user">
   		select u.user_id userId,u.username,u.email,u.mobile,u.status,u.create_time crateTime,
-  		u.ssex,d.dept_name deptName from t_user u 
+  		u.ssex,d.dept_name deptName from t_user u
   		left join t_dept d on(u.dept_id = d.dept_id)
   		where 1=1
   		<if test="username != null and username != ''">

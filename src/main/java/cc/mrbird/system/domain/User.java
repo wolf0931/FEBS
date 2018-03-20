@@ -188,7 +188,11 @@ public class User implements Serializable {
 	}
 
 	/**
+<<<<<<< HEAD
 	 * @return CREATE_TIME
+=======
+	 * @return CRATE_TIME
+>>>>>>> f7ef351d1fc3f1cd741154bbe549a16032eb46b8
 	 */
 	public Date getCrateTime() {
 		return crateTime;
