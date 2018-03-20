@@ -28,7 +28,7 @@ public class DictServiceImpl extends BaseService<Dict> implements DictService {
 		Example example = new Example(Dict.class);
 		Criteria criteria = example.createCriteria();
 		if (StringUtils.hasValue(dict.getKey())) {
-			criteria.andCondition("key=", dict.getKey());
+			criteria.andCondition("ikey=", dict.getKey());
 		}
 		if (StringUtils.hasValue(dict.getValue())) {
 			criteria.andCondition("value=", dict.getValue());

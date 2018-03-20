@@ -16,7 +16,7 @@ public class Dict {
 	@ExportConfig(value = "字典ID")
 	private Long dictId;
 
-	@Column(name = "KEY")
+	@Column(name = "IKEY")
 	@ExportConfig(value = "字典Key")
 	private Long key;
 
